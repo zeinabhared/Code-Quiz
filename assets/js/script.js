@@ -1,4 +1,5 @@
 var timeElement = document.querySelector("#time");
+var leaderboard = document.querySelector("#scores");
 var welcomePageEl = document.querySelector(".welcome");
 var btnElement = document.querySelector("#start");
 var divContEL = document.querySelector(".divContainer");
@@ -8,11 +9,10 @@ var finishDiv = document.querySelector(".finish-section");
 var finalScore = document.querySelector("#result");
 var errMsg = document.querySelector("#errorMsg");
 var initialInput = document.querySelector("#inputInitial").value;
-var submitEl = document.querySelector(".btn btn-primary mb-2");
+var submitEl = document.querySelector(".btn");
 var responseDiv = document.querySelector("#response");
 var lastPageEl = document.querySelector(".last-page");
 var initialAndScore = document.querySelector("#staticEmail");
-var headerNavEl = document.querySelector(".header-nav");
 
  // Function to display questions on page 
  function displayQuestions() {
@@ -66,12 +66,11 @@ var headerNavEl = document.querySelector(".header-nav");
     });
 }
 
-var timer = 76;
-var timeCount;
-
 // Timer function 
+var timer = 60;
+var timeCount;
 function setupTimer() {
-    timeCount = setInterval(function () {
+    timeCount = setInterval(function() {
         timer--;
         var timeReset = timeElement.textContent = "Time:" + " " + timer;
        timer = timer;
@@ -82,7 +81,7 @@ function setupTimer() {
         }
     }, 1000)
 }
- 
+
 // Event Listener to start timer and hide quiz button
 document.addEventListener("click", function (event) {
     if (event.target === btnElement) {
@@ -91,13 +90,12 @@ document.addEventListener("click", function (event) {
         displayQuestions();
     }
 })
- 
-var i = 0;
 
 // Function to compare the answers and display each questions as the buttons are clicked.
+var i = 0;
 function onclickHandler(event) {
      
-    if(timer<=0){
+    if (timer === 0) {
         clearInterval(timeCount);
         divContEL.style.display="none";
         displayResult();
@@ -113,15 +111,15 @@ function onclickHandler(event) {
         timer = timer - 15;
      }
      
-    if (i < questions.length-1) {
+    if (i < questions.length - 1) {
       i++;
-      setTimeout(function () {
+      setTimeout(function() {
       displayQuestions();
       responseDiv.textContent = "";
     }, 1000)
 
     } else {
-        setTimeout(function () {
+        setTimeout(function() {
             responseDiv.textContent = "";
             displayResult();
             clearInterval(timeCount);
@@ -131,7 +129,7 @@ function onclickHandler(event) {
         divContEL.innerHTML = '';
      }
      
-// Function to display users' high scores 
+// Function to display user high score
     function displayResult() {
         finishDiv.style.visibility = "visible";
         timeElement.textContent = "Time:" + " " + timer;
@@ -141,6 +139,12 @@ function onclickHandler(event) {
         localStorage.setItem("HighScores", HighScores)
     }
 }
+
+// Init function so you can view scores 
+function init() {
+    leaderboard.addEventListener("click", showScores);
+}
+
 // Function to show the last page 
 function renderLastItem() {
     var yourScore = localStorage.getItem("HighScores");
@@ -153,7 +157,6 @@ function renderLastItem() {
     lastPageEl.style.visibility = "visible";
     var initialAndScore = document.querySelector("#staticEmail");
     initialAndScore.value = yourInitial + ":" + " " + yourScore;
-
 }
  
 // Event Listener to submit the initial and final score to local storage 
@@ -169,7 +172,6 @@ document.addEventListener("submit", function (event) {
         localStorage.setItem("Initial", initialInput)
          renderLastItem()
     }
-
 })
 
 // Function to refresh the page and send user back to first page 

@@ -16,9 +16,9 @@ var questions = [
         answer: "console log"
     },
     {
-        title: "The condition in an if / else statement is enclosed within ____.",
-        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-        answer: "parentheses",
+        title: "String values must be enclosed within ____ when being assigned to variables.",
+        choices: ["commas", "curly brackets", "quotes", "parentheses"],
+        answer: "quotes"
     },
     {
         title: "Arrays in Javascript can be used to store ____.",
