@@ -1,4 +1,4 @@
-# Module 4 Challenge: Web APIs Code Quiz 
+# Code Quiz 
 
 For this module challenge I needed to build a multiple choice quiz with the following criteria: 
 * Start button 
@@ -25,4 +25,4 @@ The following animation demonstrates the application functionality:
 
 ![screenshot of scoreboard](./assets/images/code-quiz5.png)
 
-### Link to deployed application: https://zeinabhared.github.io/code-quiz/
+### Link to deployed application: https://zeinabhared.github.io/Code-Quiz/
